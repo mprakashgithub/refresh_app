@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -45,13 +47,19 @@ class _MyHomePageState extends State<MyHomePage> {
     "Sanish Prakash"
   ];
   @override
+  void initState() {
+    super.initState();
+    Timer.periodic(Duration(seconds: 15), (timer) {
+      names.add("New Name");
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () async {
-          setState(() {
-            names.add("New Name");
-          });
+          setState(() {});
         },
         child: ListView.builder(
             itemCount: names.length,
